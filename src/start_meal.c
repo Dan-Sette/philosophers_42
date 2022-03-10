@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:00:03 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 18:15:00 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:07:47 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ void	*routine(void *ph)
 	while (!philo->table->dead_philo)
 	{
 		took_forks(philo);
-		if (philo->table->dead_philo || !philo->alive)
-			return (NULL);
+		if (philo->table->dead_philo)
+			return (dropped_forks(philo));
 		eating(philo);
-		dropped_forks(philo);
-		if (philo->table->dead_philo || !philo->alive)
-			return (NULL);
+		if (philo->table->dead_philo)
+			return (dropped_forks(philo));
 		fall_asleep(philo);
-		if (philo->table->dead_philo || !philo->alive)
+		if (philo->table->dead_philo)
 			return (NULL);
 		thinking(philo);
 	}
@@ -42,17 +41,17 @@ void	start_meal(t_table *table)
 	pthread_t checker;
 
 	i = 0;
+	pthread_create(&checker, NULL, &check_pulse, table);
 	while (i < table->n_philo)
 	{
 		pthread_create(&table->philo[i].persona, NULL, &routine, &table->philo[i]);
 		i++;
 	}
-	pthread_create(&checker, NULL, &check_pulse, table);
-	pthread_detach(checker);
 	i = 0;
 	while (i < table->n_philo)
 	{
 		pthread_join(table->philo[i].persona, NULL);
 		i++;
 	}
+	pthread_join(checker, NULL);
 }

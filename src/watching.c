@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:52:00 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 18:16:48 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:56:37 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,11 @@ bool	check_aux(t_table *table)
 	{
 		if (get_time() - table->philo[counter].last_meal > table->t_die)
 		{
-			table->philo[counter].alive = false;
 			print_actions(M_DIED, &table->philo[counter]);
 			return (true);
 		}
 		if (table->philo[counter].meal_counter == table->meals)
-		{
-			table->philo[counter].alive = false;
 			return (true);
-		}
 		counter++;
 	}
 	return (false);

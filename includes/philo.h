@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:20:38 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 17:52:16 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:06:38 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ struct s_philo
 	int				r_fork;
 	int				l_fork;
 	int				meal_counter;
-	bool			alive;
 	pthread_t		persona;
 	pthread_mutex_t	mutex;
 	t_table			*table;
@@ -71,7 +70,7 @@ void		print_actions(const char *str, t_philo *philo);
 void		do_free(t_table *table);
 void		took_forks(t_philo *philo);
 void		eating(t_philo *philo);
-void		dropped_forks(t_philo *philo);
+void		*dropped_forks(t_philo *philo);
 void		fall_asleep(t_philo *philo);
 void		thinking(t_philo *philo);
 void		*check_pulse(void *tb);

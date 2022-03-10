@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:20:08 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/09 18:27:55 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:40:06 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char *argv[])
 {
 	t_table table;
 
-	if (argc < 5 || argc > 6)
+	if (argc < 5 || argc > 6 || *argv[1] == '0')
 	{
 		printf("Error\n");
 		return (1);

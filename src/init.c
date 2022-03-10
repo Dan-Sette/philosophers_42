@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:54:17 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 17:48:51 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:53:47 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_struct(int argc, char *argv[], t_table *table)
 	table->start = get_time();
 	memset(table->fork, 0, sizeof(pthread_mutex_t));
 	pthread_mutex_init(&table->print, NULL);
+	table->dead_philo = false;
 	if (argc == 6)
 		table->meals = ft_atoi(argv[5]);
 	else
@@ -36,7 +37,6 @@ void	init_philo(t_table *table)
 	i = 0;
 	while (i < table->n_philo)
 	{
-		table->philo[i].alive = true;
 		table->philo[i].meal_counter = 0;
 		table->philo[i].table = table;
 		table->philo[i].id = i + 1;

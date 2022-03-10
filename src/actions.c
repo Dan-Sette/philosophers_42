@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:02:16 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 18:09:48 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 19:06:21 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ void	took_forks(t_philo *philo)
 	else
 	{
 		usleep(philo->table->t_die * 1000);
-		philo->alive = false;
+		philo->table->dead_philo = true;
 	}
-	
 }
 
 void	eating(t_philo *philo)
@@ -37,16 +36,18 @@ void	eating(t_philo *philo)
 	philo->meal_counter++;
 }
 
-void	dropped_forks(t_philo *philo)
+void	*dropped_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(&philo->table->fork[philo->r_fork]);
 	pthread_mutex_unlock(&philo->table->fork[philo->l_fork]);
+	return (NULL);
 }
 
 void	fall_asleep(t_philo *philo)
 {
-	usleep(philo->table->t_sleep * 1000);
 	print_actions(M_SLEEP, philo);
+	dropped_forks(philo);
+	usleep(philo->table->t_sleep * 1000);
 }
 
 void	thinking(t_philo *philo)
