@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:54:17 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/09 18:39:07 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:48:51 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ void	init_philo(t_table *table)
 	i = 0;
 	while (i < table->n_philo)
 	{
+		table->philo[i].alive = true;
+		table->philo[i].meal_counter = 0;
 		table->philo[i].table = table;
 		table->philo[i].id = i + 1;
 		table->philo[i].last_meal = get_time();
 		pthread_mutex_init(&table->fork[i], NULL);
+		pthread_mutex_init(&table->philo[i].mutex, NULL);
 		table->philo[i].r_fork = i;
 		table->philo[i].l_fork = i + 1;
 		i++;

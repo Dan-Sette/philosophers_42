@@ -6,18 +6,19 @@
 #    By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/08 16:29:39 by dalves-s          #+#    #+#              #
-#    Updated: 2022/03/09 17:33:14 by dalves-s         ###   ########.fr        #
+#    Updated: 2022/03/10 18:18:04 by dalves-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_FILES	= 	philo.c init.c ft_atoi.c utils.c start_meal.c actions.c
+SRC_FILES	= 	philo.c init.c ft_atoi.c utils.c start_meal.c actions.c \
+				watching.c
 SRC_DIR		=	./src
 OBJECT_DIR	=	./obj
 INCLUDES	=	./includes
 
 OBJECT		=	$(addprefix $(OBJECT_DIR)/,$(subst .c,.o,$(SRC_FILES)))
 CC			=	clang
-CFLAGS		=	-g3 -pthread -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS		=	-pthread -Wall -Wextra -Werror -fsanitize=address #-fsanitize=thread
 MAKE_DIR	=	mkdir -p
 RM			=	rm -fr
 NAME		=	philo
@@ -29,7 +30,7 @@ $(NAME):			$(OBJECT)
 
 $(OBJECT_DIR)/%.o:	$(SRC_DIR)/%.c
 		$(MAKE_DIR) $(OBJECT_DIR)
-		$(CC) $(CFLAGS) -I $(INCLUDES) -o $@ -c $<
+		$(CC) $(CFLAGS) -g -I $(INCLUDES) -o $@ -c $<
 
 clean:
 		$(RM) $(OBJECT_DIR)
