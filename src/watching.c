@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:52:00 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 22:26:51 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/11 09:42:53 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	check_aux(t_table *table)
 			print_actions(M_DIED, &table->philo[counter]);
 			return (true);
 		}
-		if (table->philo[counter].meal_counter == table->meals)
+		if (table->philo[counter].meal_counter >= table->meals)
 			enough++;
 		if (enough == table->n_philo)
 			return (true);
@@ -37,7 +37,7 @@ bool	check_aux(t_table *table)
 
 void	*check_pulse(void *tb)
 {
-	t_table *table;
+	t_table	*table;
 
 	table = tb;
 	while (!table->dead_philo)

@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:00:03 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 22:05:20 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/11 09:41:40 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	*routine(void *ph)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = ph;
 	if (philo->id % 2 == 0)
 		usleep(1600);
-	while (!philo->table->dead_philo)
+	while (!philo->table->dead_philo
+		&& philo->meal_counter < philo->table->meals)
 	{
 		took_forks(philo);
 		if (philo->table->dead_philo)
@@ -37,14 +38,15 @@ void	*routine(void *ph)
 
 void	start_meal(t_table *table)
 {
-	int	i;
-	pthread_t checker;
+	int			i;
+	pthread_t	checker;
 
 	i = 0;
 	pthread_create(&checker, NULL, &check_pulse, table);
 	while (i < table->n_philo)
 	{
-		pthread_create(&table->philo[i].persona, NULL, &routine, &table->philo[i]);
+		pthread_create(&table->philo[i].persona, NULL, &routine,
+			&table->philo[i]);
 		i++;
 	}
 	i = 0;

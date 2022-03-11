@@ -6,20 +6,20 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:20:38 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 19:06:38 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/11 09:46:13 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <stdio.h>
 # include <stdbool.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <sys/time.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <sys/time.h>
 
 # define M_TAKEN    "has taken a fork"
 # define M_EAT      "is eating"
@@ -27,8 +27,8 @@
 # define M_THINK    "is thinking"
 # define M_DIED     "died"
 
-typedef struct s_table t_table;
-typedef struct s_philo t_philo;
+typedef struct s_table	t_table;
+typedef struct s_philo	t_philo;
 
 struct s_philo
 {
@@ -55,7 +55,6 @@ struct s_table
 	pthread_mutex_t	print;
 	t_philo			*philo;
 };
-
 
 int			main(int argc, char *argv[]);
 int			handle_args(char *argv[]);

@@ -6,18 +6,18 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:20:08 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 18:40:06 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/11 09:44:55 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		handle_args(char *argv[])
+int	handle_args(char *argv[])
 {
 	int		i;
 
 	i = 1;
-	while ((void*)argv[i] != NULL)
+	while ((void *)argv[i] != NULL)
 	{
 		if (check_is_int(argv[i]))
 		{
@@ -31,7 +31,7 @@ int		handle_args(char *argv[])
 
 int	main(int argc, char *argv[])
 {
-	t_table table;
+	t_table	table;
 
 	if (argc < 5 || argc > 6 || *argv[1] == '0')
 	{
