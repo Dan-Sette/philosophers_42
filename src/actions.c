@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:02:16 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 19:06:21 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:23:42 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 void	took_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->fork[philo->r_fork]);
+	if (philo->table->dead_philo)
+		return ;
 	print_actions(M_TAKEN, philo);
 	if (philo->table->n_philo > 1)
-	{
 		pthread_mutex_lock(&philo->table->fork[philo->l_fork]);
+	if (philo->table->dead_philo)
+		return ;
+	if (philo->table->n_philo > 1)
 		print_actions(M_TAKEN, philo);
-	}
-	else
+	if (philo->table->n_philo == 1)
 	{
 		usleep(philo->table->t_die * 1000);
 		philo->table->dead_philo = true;

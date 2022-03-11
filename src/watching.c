@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 11:52:00 by dalves-s          #+#    #+#             */
-/*   Updated: 2022/03/10 18:56:37 by dalves-s         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:26:51 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 bool	check_aux(t_table *table)
 {
 	int	counter;
+	int	enough;
 
 	counter = 0;
+	enough = 0;
 	while (counter < table->n_philo)
 	{
 		if (get_time() - table->philo[counter].last_meal > table->t_die)
@@ -25,6 +27,8 @@ bool	check_aux(t_table *table)
 			return (true);
 		}
 		if (table->philo[counter].meal_counter == table->meals)
+			enough++;
+		if (enough == table->n_philo)
 			return (true);
 		counter++;
 	}
